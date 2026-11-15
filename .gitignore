@@ -1,0 +1,34 @@
+# Factory firmware dumps: kept locally, never committed
+backup/*.bin
+
+# Arduino / arduino-cli build output
+build/
+**/build/
+*.elf
+*.map
+*.hex
+*.bin
+*.o
+*.a
+*.d
+
+# PlatformIO
+.pio/
+
+# Debugger and IDE files
+debug.cfg
+debug_custom.json
+*.svd
+.vscode/
+.idea/
+
+# Local secrets (WiFi credentials and similar)
+secrets.h
+arduino_secrets.h
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
