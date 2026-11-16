@@ -64,21 +64,34 @@ static void ring() { tft.drawCircle(120, 120, 119, TFT_DARKGREY); }
 
 static void drawIdle() {
   tft.fillScreen(TFT_BLACK);
-  ring();
-  tft.setTextDatum(middle_center);
-  tft.setFont(&fonts::FreeSansBold12pt7b);
-  tft.setTextColor(TFT_WHITE, TFT_BLACK);
-  tft.drawString("Identity Disc", 120, 85);
-  tft.setFont(&fonts::Font2);
-  tft.setTextColor(TFT_CYAN, TFT_BLACK);
-  tft.drawString("USB ready", 120, 125);
-  tft.setTextColor(TFT_DARKGREY, TFT_BLACK);
-  char b[24];
-  snprintf(b, sizeof(b), "id %s", discId);
-  tft.drawString(b, 120, 150);
-  tft.drawString("fw " FW_VERSION, 120, 170);
   glow::set(glow::Standby);
   glow::invalidate();
+
+  // TRON cybernetic inner crosshair & concentric grid lines
+  tft.drawCircle(120, 120, 90, tft.color565(0x00, 0x28, 0x3D));
+  tft.drawCircle(120, 120, 52, tft.color565(0x00, 0x1F, 0x30));
+  tft.drawFastHLine(35, 120, 18, tft.color565(0x00, 0x55, 0x77));
+  tft.drawFastHLine(187, 120, 18, tft.color565(0x00, 0x55, 0x77));
+  tft.drawFastVLine(120, 35, 18, tft.color565(0x00, 0x55, 0x77));
+  tft.drawFastVLine(120, 187, 18, tft.color565(0x00, 0x55, 0x77));
+
+  tft.setTextDatum(middle_center);
+  tft.setFont(&fonts::FreeSansBold12pt7b);
+  tft.setTextColor(tft.color565(0x00, 0xF3, 0xFF), TFT_BLACK);
+  tft.drawString("IDENTITY DISC", 120, 80);
+
+  tft.setFont(&fonts::Font2);
+  tft.setTextColor(tft.color565(0x00, 0xFF, 0x88), TFT_BLACK);
+  tft.drawString("[ ARMED // ONLINE ]", 120, 108);
+
+  tft.setTextColor(tft.color565(0x00, 0xB4, 0xD8), TFT_BLACK);
+  tft.drawString("ZERO-TRUST VAULT", 120, 130);
+
+  tft.setTextColor(tft.color565(0x44, 0x77, 0x99), TFT_BLACK);
+  char b[32];
+  snprintf(b, sizeof(b), "ID: %s", discId);
+  tft.drawString(b, 120, 155);
+  tft.drawString("FW: " FW_VERSION, 120, 172);
 }
 
 // Wrap label into at most two lines of up to 17 characters.
