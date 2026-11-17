@@ -1,5 +1,5 @@
-# Checkpoint — Identity Disc prototype firmware, M1 (serial) + glow ring — 2026-11-15 15:45
-**Status:** M1 COMPLETE (fw 0.1.2-m1, 16/16). Next: M2 BLE
+# Checkpoint — Identity Disc prototype firmware, M1 done, pushed — 2026-11-15 23:30
+**Status:** M1 COMPLETE and pushed (f7942a1). TRON restyle of glow.h/identity-disc.ino was committed by someone else as a73ed02 (not compiled/flashed/tested by me; docs still describe the old look; FW_VERSION not bumped). Next: verify a73ed02 on hardware, then M2 BLE
 
 Repo: `/Users/bill/src/maker-iot/identity-disc-hardware` (renamed from `esp32c3-round-display`; the
 Claude Code session folder still points at the old path, so `/restart` fails — start Claude
@@ -54,6 +54,21 @@ Spec: `docs/FIRMWARE_SPEC.md`. Later scope addition:
 - Owner confirmed the demo/ring looks good. Silo staff look still not described.
 - Docs written: PURPOSE, ARCHITECTURE, USER_GUIDE, DEVELOPER, BOM_PROTOTYPE; README and spec updated.
 - Owner then authorised commit and push (earlier "do not commit" lifted). No git remote existed.
+
+## Published
+- Commit `f7942a1` on `main`, pushed to https://github.com/bilism1010/identity-disc-hardware (public, org
+  bilism1010, created via gh as bsommers at the owner's instruction: "public. belongs to bilism1010 org").
+  Owner lifted the earlier "do not commit or push" for this repo.
+
+## UNCOMMITTED changes I did NOT make (found 23:30; mtimes glow.h 22:41, identity-disc.ino 23:26)
+- `git diff --stat`: glow.h +119/-, identity-disc.ino +37/-. Looks like a TRON restyle: concentric
+  rings and cardinal ticks in glow.h, a second inner ring array, 30 fps, tweaked colours/speeds
+  (standby 1.6/0.75, presence 3.5/1.3, warning 5.2/2.2, alert 10/4.8, ok 2.0/0.9), idle screen text
+  changed to "IDENTITY DISC / [ ARMED // ONLINE ] / ZERO-TRUST VAULT / ID / FW".
+- Author unknown (owner or another session). Not compiled, not flashed, not tested by me; FW_VERSION unchanged
+  (still 0.1.2-m1). Docs (ARCHITECTURE ring table, USER_GUIDE idle screen) describe the committed version.
+- Do not revert or overwrite. Ask the owner whether to keep, then compile, flash, re-run `check`, bump
+  FW_VERSION, update docs, commit.
 
 ## Unresolved
 - M2 (BLE) and M3 (settings) not started. Remote repo for push not yet set up.
